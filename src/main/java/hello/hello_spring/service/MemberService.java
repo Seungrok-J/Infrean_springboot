@@ -2,10 +2,12 @@ package hello.hello_spring.service;
 
 import hello.hello_spring.domain.Member;
 import hello.hello_spring.repository.MemberRepository;
+import jakarta.transaction.Transactional;
 
 import java.util.List;
 import java.util.Optional;
 
+@Transactional
 public class MemberService {
 
     private final MemberRepository memberRepository;
@@ -16,6 +18,7 @@ public class MemberService {
     /**
      * 회원 가입
      */
+    // jpa는 조인 들어올 떄 모든 데이터 변경이 다 트랜잭션 안에서 실행 되어야한다.
     public Long join(Member member) {
         validateDuplicateMember(member);
 
